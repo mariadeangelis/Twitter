@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -20,7 +21,7 @@ import cz.msebera.android.httpclient.Header;
 public class ComposeActivity extends AppCompatActivity {
 
     // tweet to be passed to the other activity
-    @Nullable protected Tweet tweet;
+    public Tweet tweet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class ComposeActivity extends AppCompatActivity {
     }
 
     // Called when the button has been clicked
-    protected void tweetDone()
+    public void tweetDone(View view)
     {
         // Get a reference with the edit text
         EditText et = (EditText) findViewById(R.id.et_simple);
@@ -38,27 +39,28 @@ public class ComposeActivity extends AppCompatActivity {
         TwitterClient client = TwitterApp.getRestClient();
         client.sendTweet(et.getText().toString(), new JsonHttpResponseHandler(){
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //super.onSuccess(statusCode, headers, response);
 
                 // Do the whole try catch thing and get the tweet itself
                 try {
-                    tweet = Tweet.fromJSON(response.getJSONObject(0));
+
+                    tweet = Tweet.fromJSON(response);
+
+                    // Prepare data intent
+                    //Intent data = new Intent(ComposeActivity.this, TimelineActivity.class);
+                    Intent data = new Intent();
+
+                    // Pass relevant data back as a result
+                    data.putExtra("new_tweet", Parcels.wrap(tweet));
+
+                    // Activity finished ok, return the data
+                    setResult(RESULT_OK, data); // set result code and bundle data for response
+                    finish(); // closes the activity, pass data to parent
                 }
                 catch (JSONException e){
                     e.printStackTrace();
                 }
-
-                // Prepare data intent
-                Intent data = new Intent(ComposeActivity.this, TimelineActivity.class);
-
-                // Pass relevant data back as a result
-                data.putExtra("new_tweet", Parcels.wrap(tweet));
-
-                // Activity finished ok, return the data
-                setResult(RESULT_OK, data); // set result code and bundle data for response
-                finish(); // closes the activity, pass data to parent
-
             }
 
             // Stupid Failure error handlers

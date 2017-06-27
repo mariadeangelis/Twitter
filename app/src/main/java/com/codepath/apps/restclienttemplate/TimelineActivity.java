@@ -128,23 +128,19 @@ public class TimelineActivity extends AppCompatActivity {
         // REQUEST_CODE is defined above
         if (resultCode == RESULT_OK && requestCode == 20) {
 
-            // Unrap parcel to get the tweet
-            Tweet new_tweet = (Tweet) Parcels.unwrap(getIntent().getParcelableExtra("new_tweet"));
+            // Unwrap parcel to get the tweet
+            Tweet new_tweet = (Tweet) Parcels.unwrap(data.getParcelableExtra("new_tweet"));
 
             // Toast the new tweet to display temporarily on screen
             Toast.makeText(this, new_tweet.getBody(), Toast.LENGTH_SHORT).show();
 
             // now, let's add this fun new tweet to our timeline
 
-            tweets.add(new_tweet); // add to data source
-            tweetAdapter.notifyItemInserted(tweets.size() - 1);
+            tweets.add(0, new_tweet); // add to data source at top
+            tweetAdapter.notifyItemInserted(0); // at top
 
             // Now scroll to the top of the page
             rvTweets.scrollToPosition(0);
         }
     }
-
-
-
-
 }
