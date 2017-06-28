@@ -1,21 +1,28 @@
 package com.codepath.apps.restclienttemplate;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
+import org.parceler.Parcels;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by mariadeangelis on 6/26/17.
@@ -23,6 +30,9 @@ import java.util.Locale;
 
 public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
 {
+
+    // Needed to make this global to the class for the reply button listener to recognize it
+    Tweet tweet;
 
     private List<Tweet> mtweets;
     Context context;
@@ -45,7 +55,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // get the data according to position
-        Tweet tweet = mtweets.get(position);
+        tweet = mtweets.get(position);
 
         // populate the views according to this data
         holder.tvUsername.setText(tweet.user.name);
@@ -54,6 +64,22 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
         holder.tvTime.setText(getRelativeTimeAgo(tweet.createdAt));   // added to get tweet time to work
 
         Glide.with(context).load(tweet.user.profileImageUrl).into(holder.ivProfileImage);
+
+        // Add on click listener
+        Button clickButton = (Button) holder.reply_button;
+        clickButton.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // Package and send over the parent tweet
+                Intent myIntent = new Intent(context, ComposeActivity.class);
+
+                // Pass relevant data back as a result
+                myIntent.putExtra("parent_tweet", Parcels.wrap(tweet));
+                ((Activity)context).startActivityForResult(myIntent, 20); // same code as the other one
+            }
+        });
     }
 
     @Override
@@ -68,6 +94,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
         public TextView tvUsername;
         public TextView tvBody;
         public TextView tvTime;
+        public Button reply_button;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -78,6 +105,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
             tvUsername = (TextView) itemView.findViewById(R.id.tvUserName);
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
+            reply_button = (Button) itemView.findViewById(R.id.reply_button);
         }
     }
 
@@ -101,6 +129,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
     }
 
     // Methods for scroll up to refresh
+
     // Clean all elements of the recycler
     public void clear() {
         mtweets.clear();

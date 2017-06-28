@@ -49,4 +49,12 @@ public class Tweet {
     public String getBody() {
         return body;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public long getUid() {
+        return uid;
+    }
 }

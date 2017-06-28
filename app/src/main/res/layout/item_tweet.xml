@@ -41,4 +41,13 @@
         android:layout_marginStart="128dp"
         android:text="TextView" />
 
+    <Button
+        android:id="@+id/reply_button"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/tvUserName"
+        android:layout_marginEnd="13dp"
+        android:text="Reply" />
+
 </RelativeLayout>

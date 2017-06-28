@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.support.design.widget.TextInputLayout;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -24,11 +25,33 @@ public class ComposeActivity extends AppCompatActivity {
 
     // tweet to be passed to the other activity
     public Tweet tweet;
+    public long parent_uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compose);
+
+        Tweet parent_tweet = (Tweet) Parcels.unwrap(getIntent().getParcelableExtra("parent_tweet"));
+
+        parent_uid = -1;
+        User parent_user;
+        String parent_screen_name = "";
+
+        // if passed in tweet is not null
+        if (parent_tweet != null)
+        {
+            parent_user = parent_tweet.getUser();
+
+            // This will be passed to send tweet and used in it if it is not -1
+            parent_uid = parent_user.getUid();
+            parent_screen_name = parent_user.getScreenName();
+        }
+
+        // and add the @user_name to the edit text
+        EditText et = (EditText) findViewById(R.id.et_simple); // get the reference
+        et.setText("@"+ parent_screen_name);
+
     }
 
     // Called when the button has been clicked

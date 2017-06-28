@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -172,6 +173,7 @@ public class TimelineActivity extends AppCompatActivity {
     }
 
     // Original caller, time to handle the result of the sub-activity
+    // We are also using this same thing for the reply thing
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // REQUEST_CODE is defined above
@@ -179,9 +181,6 @@ public class TimelineActivity extends AppCompatActivity {
 
             // Unwrap parcel to get the tweet
             Tweet new_tweet = (Tweet) Parcels.unwrap(data.getParcelableExtra("new_tweet"));
-
-            // Toast the new tweet to display temporarily on screen
-            //Toast.makeText(this, new_tweet.getBody(), Toast.LENGTH_SHORT).show();
 
             // now, let's add this fun new tweet to our timeline
 
@@ -192,4 +191,5 @@ public class TimelineActivity extends AppCompatActivity {
             rvTweets.scrollToPosition(0);
         }
     }
+
 }
