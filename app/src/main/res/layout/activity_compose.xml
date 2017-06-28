@@ -6,12 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.codepath.apps.restclienttemplate.ComposeActivity">
 
-    <EditText
-        android:id="@+id/et_simple"
-        android:layout_height="wrap_content"
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:maxLength="140">
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="140">
+
+        <EditText
+            android:id="@+id/et_simple"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:hint="Type your deep thoughts here"
+            android:maxLength="140">
     </EditText>
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/button"
