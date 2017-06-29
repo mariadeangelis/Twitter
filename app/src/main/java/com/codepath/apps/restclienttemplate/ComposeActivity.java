@@ -46,11 +46,11 @@ public class ComposeActivity extends AppCompatActivity {
             // This will be passed to send tweet and used in it if it is not -1
             parent_uid = parent_user.getUid();
             parent_screen_name = parent_user.getScreenName();
-        }
 
-        // and add the @user_name to the edit text
-        EditText et = (EditText) findViewById(R.id.et_simple); // get the reference
-        et.setText("@"+ parent_screen_name);
+            // and add the @user_name to the edit text
+            EditText et = (EditText) findViewById(R.id.et_simple); // get the reference
+            et.setText("@"+ parent_screen_name);
+        }
 
     }
 

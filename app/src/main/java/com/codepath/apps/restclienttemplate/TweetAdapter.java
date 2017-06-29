@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -66,7 +67,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
         Glide.with(context).load(tweet.user.profileImageUrl).into(holder.ivProfileImage);
 
         // Add on click listener for reply button
-        Button clickButton = (Button) holder.reply_button;
+        ImageButton clickButton = holder.reply_button;
         clickButton.setOnClickListener( new View.OnClickListener() {
 
             @Override
@@ -78,6 +79,22 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
                 // Pass relevant data back as a result
                 myIntent.putExtra("parent_tweet", Parcels.wrap(tweet));
                 ((Activity)context).startActivityForResult(myIntent, 20); // same code as the other one
+            }
+        });
+
+        // Add on click listener for detail button
+        Button detail_button = holder.detail_button;
+        detail_button.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // Package and send over the parent tweet
+                Intent myIntent = new Intent(context, DetailActivity.class);
+
+                // Pass relevant data back as a result
+                myIntent.putExtra("tweet", Parcels.wrap(tweet));
+                context.startActivity(myIntent);
             }
         });
     }
@@ -94,7 +111,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
         public TextView tvUsername;
         public TextView tvBody;
         public TextView tvTime;
-        public Button reply_button;
+        public ImageButton reply_button;
+        public Button detail_button;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -105,7 +123,8 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
             tvUsername = (TextView) itemView.findViewById(R.id.tvUserName);
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
-            reply_button = (Button) itemView.findViewById(R.id.reply_button);
+            reply_button = (ImageButton) itemView.findViewById(R.id.reply_button);
+            detail_button = (Button) itemView.findViewById(R.id.detail_button);
         }
     }
 
