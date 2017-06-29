@@ -65,7 +65,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
 
         Glide.with(context).load(tweet.user.profileImageUrl).into(holder.ivProfileImage);
 
-        // Add on click listener
+        // Add on click listener for reply button
         Button clickButton = (Button) holder.reply_button;
         clickButton.setOnClickListener( new View.OnClickListener() {
 

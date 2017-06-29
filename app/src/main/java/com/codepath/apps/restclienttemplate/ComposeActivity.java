@@ -62,7 +62,7 @@ public class ComposeActivity extends AppCompatActivity {
 
         // Create Twitter Client and send
         TwitterClient client = TwitterApp.getRestClient();
-        client.sendTweet(et.getText().toString(), new JsonHttpResponseHandler(){
+        client.sendTweet(et.getText().toString(), parent_uid, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 //super.onSuccess(statusCode, headers, response);

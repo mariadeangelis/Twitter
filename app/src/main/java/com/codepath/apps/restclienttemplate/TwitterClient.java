@@ -52,11 +52,18 @@ public class TwitterClient extends OAuthBaseClient {
 		client.get(apiUrl, params, handler);
 	}
 
-	public void sendTweet(String message, AsyncHttpResponseHandler handler) {
+	public void sendTweet(String message, long uid, AsyncHttpResponseHandler handler) {
 		String apiUrl = getApiUrl("statuses/update.json");
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();
 		params.put("status", message);
+
+		if (uid != -1)
+		{
+			// need this line to make it a "real" re-tweet
+			params.put("in_reply_to_status_id", uid);
+		}
+
 		client.post(apiUrl, params, handler);
 	}
 
