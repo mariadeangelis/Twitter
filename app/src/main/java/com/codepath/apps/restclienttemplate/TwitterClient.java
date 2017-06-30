@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.codepath.oauth.OAuthBaseClient;
 import com.github.scribejava.apis.FlickrApi;
@@ -8,6 +9,8 @@ import com.github.scribejava.apis.TwitterApi;
 import com.github.scribejava.core.builder.api.BaseApi;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+
+import static com.codepath.apps.restclienttemplate.models.SampleModel_Table.id;
 
 /*
  * 
@@ -67,12 +70,12 @@ public class TwitterClient extends OAuthBaseClient {
 		client.post(apiUrl, params, handler);
 	}
 
-	public void favTweet(String message, AsyncHttpResponseHandler handler)
+	public void favTweet(long id, AsyncHttpResponseHandler handler)
 	{
 		String apiUrl = getApiUrl("avorites/create.json");
 		// Can specify query string params directly or through RequestParams.
 		RequestParams params = new RequestParams();
-		params.put("status", message);
+		params.put("id", id);
 		client.post(apiUrl, params, handler);
 	}
 
