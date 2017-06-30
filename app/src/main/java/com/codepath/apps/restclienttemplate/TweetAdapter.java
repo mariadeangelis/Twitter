@@ -93,7 +93,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
                 Intent myIntent = new Intent(context, DetailActivity.class);
 
                 // Pass relevant data back as a result
-                myIntent.putExtra("tweet", Parcels.wrap(tweet));
+                myIntent.putExtra("curr_tweet", Parcels.wrap(tweet));
                 context.startActivity(myIntent);
             }
         });

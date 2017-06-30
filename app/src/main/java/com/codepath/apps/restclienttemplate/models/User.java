@@ -34,6 +34,10 @@ public class User {
         return uid;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public String getScreenName() {
         return screenName;
     }
