@@ -95,4 +95,14 @@ public class TimelineActivity extends AppCompatActivity {
         startActivityForResult(myIntent, 20);
     }
 
+    // click listener method for profile image
+    public void onProfileView(MenuItem item)
+    {
+        // launch the profile view
+        Intent i = new Intent(this, ProfileActivity.class);
+
+        // now pass in the screenName! If you don't it defaults to your own
+        startActivity(i);
+    }
+
 }

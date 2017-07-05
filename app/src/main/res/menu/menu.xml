@@ -11,7 +11,7 @@
     <item
         android:id="@+id/miProfile"
         android:icon="@drawable/ic_profile"
-        app:showAsAction="ifRoom|withText"
-        android:title="Profile">
-    </item>
+        android:onClick="onProfileView"
+        android:title="Profile"
+        app:showAsAction="ifRoom|withText"></item>
 </menu>
