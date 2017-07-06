@@ -51,13 +51,6 @@ public class UserTimelineFragment extends TweetsListFragment {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-                // Log.d("TwitterClient", response.toString());
-                // iterate through the JSON array
-                // for each entry, deserialize the JSON object
-                // convert each object to a tweet model
-                // add that Tweet model to our data source
-                // notify the adaptor that we've added an item
-
                 addItems(response);
             }
 

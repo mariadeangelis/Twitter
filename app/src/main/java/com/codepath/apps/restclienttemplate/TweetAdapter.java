@@ -97,6 +97,22 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder>
                 context.startActivity(myIntent);
             }
         });
+
+        // Add on click listener for detail button
+        ImageView iv = holder.ivProfileImage;
+        iv.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                // Package and send over the parent tweet
+                Intent myIntent = new Intent(context, ProfileActivity.class);
+
+                // Pass relevant data back as a result
+                myIntent.putExtra("screen_name", tweet.getUser().getScreenName());
+                context.startActivity(myIntent);
+            }
+        });
     }
 
     @Override
