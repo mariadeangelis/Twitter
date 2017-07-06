@@ -7,110 +7,86 @@
     tools:context="com.codepath.apps.restclienttemplate.ProfileActivity">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/rlUserHeader">
+        android:id="@+id/rlUserHeader"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivProfileImage2"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="10dp"
+            android:src="@android:drawable/ic_lock_silent_mode"/>
+
+        <TextView
+
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivProfileImage2"
+            android:text="NoNameYet"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvTagLine"
+            android:layout_alignStart="@id/tvName"
+            android:layout_below="@id/tvName"
+            android:text="hi"
+            android:textSize="12sp"/>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/llCounts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlUserHeader"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/tvFollowers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text= "-1 followers"/>
+        <TextView
+            android:id="@+id/tvFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text= "-1 following"/>
+
+    </LinearLayout>
+
 
     <FrameLayout
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/rlUserHeader">
-
+        android:layout_below="@id/llCounts">
     </FrameLayout>
+
 </RelativeLayout>
 
-    <!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<RelativeLayout-->
-<!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--android:layout_width="match_parent"-->
-<!--android:layout_height="match_parent">-->
-
-<!--<ImageView-->
-    <!--android:layout_width="fill_parent"-->
-    <!--android:layout_height="@dimen/user_header_height"-->
-    <!--android:id="@+id/ivUserBackgroundImage"-->
-    <!--android:layout_alignParentTop="true"-->
-    <!--android:layout_alignParentLeft="true"-->
+    <!--<RelativeLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="200dp"-->
     <!--android:layout_alignParentStart="true"-->
-    <!--android:scaleType="centerCrop"/>-->
-
-<!--<RelativeLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="@dimen/user_header_height"-->
     <!--android:layout_alignParentTop="true"-->
-    <!--android:layout_alignParentLeft="true"-->
+    <!--android:id="@+id/rlUserHeader">-->
+
+    <!--</RelativeLayout>-->
+
+    <!--<FrameLayout-->
+    <!--android:id="@+id/flContainer"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
     <!--android:layout_alignParentStart="true"-->
-    <!--android:id="@+id/rlUserHeader"-->
-    <!--android:gravity="center_vertical">-->
+    <!--android:layout_below="@+id/rlUserHeader">-->
 
-    <!--<com.makeramen.roundedimageview.RoundedImageView-->
-        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-        <!--android:id="@+id/ivUserPhoto"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:minWidth="50dp"-->
-        <!--android:minHeight="50dp"-->
-        <!--android:scaleType="fitCenter"-->
-        <!--app:riv_corner_radius="5dip"-->
-        <!--app:riv_mutate_background="true"-->
-        <!--app:riv_tile_mode="repeat"-->
-        <!--app:riv_oval="false"-->
-        <!--app:riv_border_color="#ffffff"-->
-        <!--app:riv_border_width="2dp"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="12dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/user_name"-->
-        <!--android:id="@+id/tvUserName"-->
-        <!--android:textColor="#000000"-->
-        <!--android:textSize="18dp"-->
-        <!--android:layout_below="@+id/ivUserPhoto"-->
-        <!--android:layout_centerHorizontal="true"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/user_screen_name"-->
-        <!--android:id="@+id/tvUserScreenName"-->
-        <!--android:layout_below="@+id/tvUserName"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="12dp"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="600dp"-->
-        <!--android:gravity="center"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/tweet_text"-->
-        <!--android:id="@+id/tvUserDescription"-->
-        <!--android:layout_below="@+id/tvUserScreenName"-->
-        <!--android:layout_centerHorizontal="true" />-->
-
-<!--</RelativeLayout>-->
-
-<!--<com.astuetz.PagerSlidingTabStrip-->
-    <!--android:id="@+id/tabs"-->
-    <!--app:pstsShouldExpand="true"-->
-    <!--app:pstsTextAllCaps="true"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@+id/rlUserHeader"-->
-    <!--app:pstsIndicatorColor="#BFE0EC"-->
-    <!--app:pstsUnderlineColor="#BFE0EC"/>-->
-
-<!--<android.support.v4.view.ViewPager-->
-    <!--android:id="@+id/viewpager"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_below="@+id/tabs"-->
-    <!--android:background="@android:color/white" />-->
+    <!--</FrameLayout>-->
+    <!--</RelativeLayout>-->

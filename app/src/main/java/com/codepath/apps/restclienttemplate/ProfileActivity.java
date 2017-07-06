@@ -3,7 +3,10 @@ package com.codepath.apps.restclienttemplate;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.fragments.UserTimelineFragment;
 import com.codepath.apps.restclienttemplate.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -47,6 +50,9 @@ public class ProfileActivity extends AppCompatActivity {
 
                     // set the title of the ActionBar based on the user information
                     getSupportActionBar().setTitle(user.screenName);
+
+                    // populate user headline
+                    populateUserHeadline(user);
                 }
                 catch (JSONException e)
                 {
@@ -55,6 +61,26 @@ public class ProfileActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void populateUserHeadline(User user)
+    {
+
+        TextView tvName = (TextView) findViewById(R.id.tvName);
+        TextView tvTagline = (TextView) findViewById(R.id.tvTagLine);
+        TextView tvFollowers = (TextView) findViewById(R.id.tvFollowers);
+        TextView tvFollowing = (TextView) findViewById(R.id.tvFollowing);
+
+        ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage2);
+
+        tvName.setText(user.getName());
+
+        tvTagline.setText(user.getTagLine());
+        tvFollowers.setText(user.getFollowers() + "Followers");
+        tvFollowing.setText(user.getFollowing() + "Following");
+
+        // load profile image with Glide
+        Glide.with(this).load(user.profileImageUrl).into(ivProfileImage);
     }
 
 }

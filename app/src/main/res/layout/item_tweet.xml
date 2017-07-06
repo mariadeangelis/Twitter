@@ -30,6 +30,7 @@
         android:layout_toEndOf="@+id/ivProfileImage"
         android:layout_below="@+id/tvUserName"
         android:layout_marginLeft="5dp"
+        android:autoLink="web"
         android:text="TextView" />
 
     <TextView

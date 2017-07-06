@@ -18,6 +18,10 @@ public class User {
     public String screenName;
     public String profileImageUrl;
 
+    public String tagLine;
+    public int followers;
+    public int following;
+
     // deserialize the JSON
     public static User fromJSON(JSONObject jsonObject) throws JSONException {
         User user = new User();
@@ -27,6 +31,11 @@ public class User {
         user.uid = jsonObject.getLong("id");
         user.screenName = jsonObject.getString("screen_name");
         user.profileImageUrl = jsonObject.getString("profile_image_url");
+
+        user.tagLine = jsonObject.getString("description");
+        user.followers = jsonObject.getInt("followers_count");
+        user.followers = jsonObject.getInt("followers_count");
+        user.following = jsonObject.getInt("friends_count");
         return user;
     }
 
@@ -40,6 +49,18 @@ public class User {
 
     public String getScreenName() {
         return screenName;
+    }
+
+    public String getTagLine() {
+        return tagLine;
+    }
+
+    public int getFollowers() {
+        return followers;
+    }
+
+    public int getFollowing() {
+        return following;
     }
 }
 
