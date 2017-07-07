@@ -2,7 +2,7 @@
 
 **Twitter** is an android app that allows a user to view his Twitter timeline and post a new tweet. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
-Time spent: **15** hours spent in total
+Time spent: **30** hours spent in total
 
 ## User Stories
 
@@ -50,7 +50,13 @@ The following **additional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented user stories:
+Here's a walkthrough of implemented user stories for week 2:
+
+![Walkthrough](twitter_walkthrough_week2.gif)'
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+Here's a walkthrough of implemented user stories for week 1:
 
 ![Walkthrough](twitter_walkthrough.gif)'
 
