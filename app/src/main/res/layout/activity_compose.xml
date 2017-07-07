@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
-        app:counterMaxLength="140">
+        app:counterMaxLength="140"
+        android:id="@+id/textInputLayout">
 
         <EditText
             android:id="@+id/et_simple"
@@ -23,14 +24,26 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+    <!--<Button-->
+        <!--android:id="@+id/button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="150dp"-->
+        <!--android:onClick="tweetDone"-->
+        <!--android:text="Button" />-->
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/textInputLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="150dp"
+        android:layout_marginTop="85dp"
+        android:scaleType="fitXY"
         android:onClick="tweetDone"
-        android:text="Button" />
+        android:background="@null"
+        app:srcCompat="@drawable/submit" />
 
 </RelativeLayout>

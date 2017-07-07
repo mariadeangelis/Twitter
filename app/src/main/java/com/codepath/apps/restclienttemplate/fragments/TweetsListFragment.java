@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 
 import com.codepath.apps.restclienttemplate.R;
 import com.codepath.apps.restclienttemplate.TweetAdapter;
+import com.codepath.apps.restclienttemplate.TwitterApp;
+import com.codepath.apps.restclienttemplate.TwitterClient;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -71,7 +73,7 @@ public class TweetsListFragment extends Fragment {
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
 
-                // fetchTimelineAsync(0);
+                fetchTimelineAsync(0);
             }
         });
 
@@ -98,29 +100,30 @@ public class TweetsListFragment extends Fragment {
         }
     }
 
-//    public void fetchTimelineAsync(int page) {
-//        // Send the network request to fetch the updated data
-//        // `client` here is an instance of Android Async HTTP
-//        // getHomeTimeline is an example endpoint.
-//
-//        client.getHomeTimeline(new JsonHttpResponseHandler() {
-//            public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
-//
-//                // Remember to CLEAR OUT old items before appending in the new ones
-//                tweetAdapter.clear();
-//
-//                // ...the data has come back, add new items to your adapter...
-//                tweetAdapter.addAll(Tweet.fromJSONArray(json));
-//
-//                // Now we call setRefreshing(false) to signal refresh has finished
-//                swipeContainer.setRefreshing(false);
-//            }
-//
-//            public void onFailure(Throwable e) {
-//                Log.d("DEBUG", "Fetch timeline error: " + e.toString());
-//            }
-//        });
-//    }
+    public void fetchTimelineAsync(int page) {
+        // Send the network request to fetch the updated data
+        // `client` here is an instance of Android Async HTTP
+        // getHomeTimeline is an example endpoint.
+
+        TwitterClient client = TwitterApp.getRestClient();
+        client.getHomeTimeline(new JsonHttpResponseHandler() {
+            public void onSuccess(int statusCode, Header[] headers, JSONArray json) {
+
+                // Remember to CLEAR OUT old items before appending in the new ones
+                tweetAdapter.clear();
+
+                // ...the data has come back, add new items to your adapter...
+                tweetAdapter.addAll(Tweet.fromJSONArray(json));
+
+                // Now we call setRefreshing(false) to signal refresh has finished
+                swipeContainer.setRefreshing(false);
+            }
+
+            public void onFailure(Throwable e) {
+                Log.d("DEBUG", "Fetch timeline error: " + e.toString());
+            }
+        });
+    }
 
 }
 

@@ -24,20 +24,23 @@
         android:layout_below="@+id/tvName"
         android:text="TextView"
         tools:layout_editor_absoluteX="55dp"
+        android:autoLink="web"
         tools:layout_editor_absoluteY="84dp"
         android:layout_alignParentEnd="true" />
 
     <ImageButton
         android:id="@+id/favorite_button"
         style="@android:style/Widget.ImageButton"
-        android:layout_width="wrap_content"
-        android:onClick="favorite"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvBody"
-        android:layout_centerHorizontal="true"
+        android:layout_width="85dp"
+        android:layout_height="75dp"
+        android:background="@null"
         android:fadeScrollbars="false"
-        app:srcCompat="@mipmap/ic_favorite"
+        android:onClick="favorite"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/favorite_button"
         tools:layout_editor_absoluteX="164dp"
         tools:layout_editor_absoluteY="163dp"
-        android:background="@null"/>
+        android:layout_below="@+id/tvBody"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
 </RelativeLayout>
